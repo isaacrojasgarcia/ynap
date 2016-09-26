@@ -4,6 +4,7 @@ import React from 'react';
 import ItemsListHeader from './items-list-header';
 import ListItem from './list-item';
 import CreateItem from './create-item';
+import { Table, Panel } from 'react-bootstrap';
 
 export default class ItemsList extends React.Component {
     renderItems() {
@@ -13,15 +14,18 @@ export default class ItemsList extends React.Component {
     render() {
         return (
             <div>
-                <CreateItem createItem={ this.createItem.bind(this) } items={ this.props.items }/>
+                <Panel>
+                    <CreateItem createItem={ this.createItem.bind(this) } items={ this.props.items }/>
+                </Panel>
 
-                <div> Items List </div>
-                <table>
-                    <ItemsListHeader/>
-                    <tbody>
-                        { this.renderItems() }
-                    </tbody>
-                </table>
+                <Panel header="Items List">
+                    <Table striped condensed hover>
+                        <ItemsListHeader/>
+                        <tbody>
+                            { this.renderItems() }
+                        </tbody>
+                    </Table>
+                </Panel>
             </div>
         );
     }

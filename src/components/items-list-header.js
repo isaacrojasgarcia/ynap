@@ -8,7 +8,6 @@ export default class ItemsListHeader extends React.Component {
                     <th>Id</th>
                     <th>Title</th>
                     <th>Price</th>
-                    <th>Actions</th>
                 </tr>
             </thead>
         );

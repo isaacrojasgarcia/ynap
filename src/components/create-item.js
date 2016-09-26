@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button, Form, FormGroup, FormControl, Col, ControlLabel } from 'react-bootstrap';
+import { Button, Form, FormGroup, FormControl, Col, ControlLabel, Alert } from 'react-bootstrap';
 
 export default class CreateItem extends React.Component {
     constructor(props) {
@@ -9,11 +9,20 @@ export default class CreateItem extends React.Component {
             error: null,
             errorMsg: ''
         };
+
     }
 
     renderError() {
-        if (!this.state.error) { return null; }
-        return <div style={{ color: 'red' }}>{ this.state.errorMsg }</div>;
+        if (!this.state.errorMsg) { return null; }
+        return (
+            <FormGroup>
+                <Col smOffset={2} sm={10}>
+                    <Alert bsStyle="danger" onDismiss={ this.handleAlertDismiss.bind(this) }>
+                        { this.state.errorMsg }
+                    </Alert>
+                </Col>
+            </FormGroup>
+        );
     }
 
     render() {
@@ -33,7 +42,7 @@ export default class CreateItem extends React.Component {
                 </FormGroup>
                 <FormGroup>
                     <Col smOffset={2} sm={10}>
-                        <Button onClick={ this.handleCreate.bind(this) }>Create</Button>
+                        <Button className="well" onClick={ this.handleCreate.bind(this) }>Create</Button>
                     </Col>
                 </FormGroup>
                 { this.renderError() }
@@ -45,7 +54,9 @@ export default class CreateItem extends React.Component {
         event.preventDefault();
 
         const titleInput = ReactDOM.findDOMNode(this.titleInput).value;
-        const priceInput = ReactDOM.findDOMNode(this.priceInput).value;;
+        const priceInput = ReactDOM.findDOMNode(this.priceInput).value;
+
+        console.log('titleInput', titleInput)
         const validateInput = this.validateInput(titleInput);
 
         if (validateInput) {
@@ -61,8 +72,8 @@ export default class CreateItem extends React.Component {
         this.setState({ error: 'success', errorMsg: null });
         this.props.createItem(buildItem(titleInput, priceInput));
 
-        // this.refs.titleInput.value = '';
-        // this.refs.priceInput.value = '';
+        ReactDOM.findDOMNode(this.titleInput).value = '';
+        ReactDOM.findDOMNode(this.priceInput).value = '';
     }
 
     validateInput(t) {
@@ -75,5 +86,10 @@ export default class CreateItem extends React.Component {
         else {
             return null;
         }
+    }
+
+    handleAlertDismiss() {
+        this.setState({ error: 'success', errorMsg: null });
+        ReactDOM.findDOMNode(this.titleInput).focus();
     }
 }
