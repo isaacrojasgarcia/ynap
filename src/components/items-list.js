@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import uuid from 'node-uuid'
 import React from 'react';
 import ItemsListHeader from './items-list-header';
 import ListItem from './list-item';
@@ -12,8 +13,9 @@ export default class ItemsList extends React.Component {
     render() {
         return (
             <div>
+                <CreateItem createItem={ this.createItem.bind(this) } items={ this.props.items }/>
+
                 <div> Items List </div>
-                <CreateItem createItem={ this.createItem.bind(this) }/>
                 <table>
                     <ItemsListHeader/>
                     <tbody>
@@ -25,6 +27,8 @@ export default class ItemsList extends React.Component {
     }
 
     createItem(it) {
-        console.log(it);
+        this.props.items.push(_.extend(it, {id: uuid.v1()}));
+        this.setState({ items: this.props.items });
+        // console.log(this.props.items);
     }
 }
