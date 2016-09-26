@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Button, Form, FormGroup, FormControl, Col, ControlLabel, Alert } from 'react-bootstrap';
 
-export default class CreateItem extends React.Component {
+export default class CreateItemComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -55,8 +55,6 @@ export default class CreateItem extends React.Component {
 
         const titleInput = ReactDOM.findDOMNode(this.titleInput).value;
         const priceInput = ReactDOM.findDOMNode(this.priceInput).value;
-
-        console.log('titleInput', titleInput)
         const validateInput = this.validateInput(titleInput);
 
         if (validateInput) {
@@ -64,13 +62,9 @@ export default class CreateItem extends React.Component {
             return;
         }
 
-        var buildItem = (title, price) => ({
-            title: title,
-            price: price
-        });
-
+        const { store } = this.context;
         this.setState({ error: 'success', errorMsg: null });
-        this.props.createItem(buildItem(titleInput, priceInput));
+        store.dispatch({ type: 'ADD_ITEM' });
 
         ReactDOM.findDOMNode(this.titleInput).value = '';
         ReactDOM.findDOMNode(this.priceInput).value = '';

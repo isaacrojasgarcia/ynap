@@ -1,13 +1,26 @@
 import _ from 'lodash';
-import uuid from 'node-uuid'
-import React from 'react';
+import React from 'react'
 import ItemsListHeader from './items-list-header';
 import ListItem from './list-item';
-import CreateItem from './create-item';
+import CreateItem from '../containers/create-item';
 import { Table, Panel } from 'react-bootstrap';
 
-export default class ItemsList extends React.Component {
+import { connect } from 'react-redux';
+import { getAll } from '../actions';
+
+class ItemsList extends React.Component {
+    static fetchData(dispatch) {
+        dispatch(getAll());
+    }
+
+    componentWillMount () {
+        if (!this.props.items) {
+            this.constructor.fetchData(this.props.dispatch);
+        }
+    }
+
     renderItems() {
+        console.log('rendering items', this.props.items);
         return _.map(this.props.items, (item, index) => <ListItem key={index} {...item} />);
     }
 
@@ -15,24 +28,23 @@ export default class ItemsList extends React.Component {
         return (
             <div>
                 <Panel>
-                    <CreateItem createItem={ this.createItem.bind(this) } items={ this.props.items }/>
+                    <CreateItem/>
                 </Panel>
 
                 <Panel header="Items List">
                     <Table striped condensed hover>
                         <ItemsListHeader/>
                         <tbody>
-                            { this.renderItems() }
+                        { this.renderItems() }
                         </tbody>
                     </Table>
                 </Panel>
             </div>
         );
     }
-
-    createItem(it) {
-        this.props.items.push(_.extend(it, {id: uuid.v1()}));
-        this.setState({ items: this.props.items });
-        // console.log(this.props.items);
-    }
 }
+
+ItemsList = connect(
+    state => ({ items: state.items })
+)(ItemsList);
+export default ItemsList;
