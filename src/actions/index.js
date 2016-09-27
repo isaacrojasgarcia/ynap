@@ -3,13 +3,20 @@ import axios from "axios";
 import fake from './products';
 
 export function addItem (title, price) {
-    return {
-        type: 'ADD_ITEM',
-        payload: {
-            id: uuid.v1(),
-            title,
-            price
-        }
+    return (dispatch) => {
+        dispatch({
+            type: 'ADD_ITEM',
+            payload: {
+                id: uuid.v1(),
+                title,
+                price
+            }
+        });
+
+        dispatch({
+            type: 'ITEM_ADDED',
+            payload: true
+        });
     };
 };
 
@@ -34,4 +41,25 @@ export function getAllItems() {
                 });
             })
     }
+};
+
+// export function itemAdded() {
+//     return {
+//         type: 'ITEM_ADDED',
+//         payload: true
+//     };
+// };
+
+export function itemTitleNotValid() {
+    return {
+        type: 'ITEM_TITLE_NOT_VALID',
+        payload: true
+    };
+};
+
+export function itemPriceNotValid() {
+    return {
+        type: 'ITEM_PRICE_NOT_VALID',
+        payload: true
+    };
 };
