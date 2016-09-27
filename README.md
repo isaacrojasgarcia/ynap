@@ -6,6 +6,10 @@ I've used `ReactJS` and `Redux` (`react-redux`) to build the application. Also, 
 
 The application assumes that `webpack` and `webpack-dev-server` are installed globally. It also assumes the REST api is running at `http:localhost:8080` and allows requests from `localhost:8000`
 
+## Changelog
+
+* Tag v1.0[ 27th Sep]: Test ready to review
+
 ## Make it work
 I've used the port 8000 since the REST api is using the port 8080.
 Basically to make it work we need to clone the repo, run `npm install` and finally run `webpack-dev-server`
