@@ -8,7 +8,7 @@ The application assumes that `webpack` and `webpack-dev-server` are installed gl
 
 ## Changelog
 
-* Tag v1.0[ 27th Sep]: Test ready to review
+* Tag v1.0 [27th Sep]: Test ready to review
 
 ## Make it work
 I've used the port 8000 since the REST api is using the port 8080.
