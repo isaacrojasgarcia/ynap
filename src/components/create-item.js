@@ -10,6 +10,7 @@ export default class CreateItemComponent extends React.Component {
         e.preventDefault();
         const title = ReactDOM.findDOMNode(this.titleInput);
         const price = ReactDOM.findDOMNode(this.priceInput);
+
         this.props.dispatch(addItem(title.value, price.value));
         title.value = '';
         price.value = '';
@@ -18,11 +19,11 @@ export default class CreateItemComponent extends React.Component {
 
     render() {
         return (
-            <Form horizontal>
+            <Form horizontal onSubmit={ this.handleCreate.bind(this) }>
                 <FormGroup bsSize="large">
                     <Col componentClass={ControlLabel} sm={2}>Title</Col>
                     <Col sm={10}>
-                        <FormControl type="text" placeholder="Item title" ref={ ref => this.titleInput = ref }/>
+                        <FormControl type="text" placeholder="Item title" ref={ ref => this.titleInput = ref } autoFocus/>
                     </Col>
                 </FormGroup>
                 <FormGroup bsSize="large">
@@ -33,7 +34,7 @@ export default class CreateItemComponent extends React.Component {
                 </FormGroup>
                 <FormGroup>
                     <Col smOffset={2} sm={10}>
-                        <Button className="well" onClick={ this.handleCreate.bind(this) }>Create</Button>
+                        <Button className="well" type="submit">Create</Button>
                     </Col>
                 </FormGroup>
             </Form>

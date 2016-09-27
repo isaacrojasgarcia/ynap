@@ -2,7 +2,7 @@ import React from 'react';
 import { Panel } from 'react-bootstrap';
 
 import ItemsList from './items-list';
-import CreateItem from '../containers/create-item';
+import CreateItem from './create-item';
 
 export default class App extends React.Component {
     render() {
