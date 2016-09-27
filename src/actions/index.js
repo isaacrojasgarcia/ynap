@@ -14,16 +14,20 @@ const items = [{
     price: 277.00
 }];
 
-export const addItem = (title, price) => ({
-    type: 'ADD_ITEM',
-    data: {
-        id: uuid.v1(),
-        title,
-        price
-    }
-});
+export function addItem (title, price) {
+    return {
+        type: 'ADD_ITEM',
+        payload: {
+            id: uuid.v1(),
+            title,
+            price
+        }
+    };
+};
 
-export const getAll = () => ({
-    type: 'GET_ALL_ITEMS',
-    items
-});
+export function getAllItems() {
+    return {
+        type: 'GET_ALL_ITEMS',
+        payload: items
+    };
+};
