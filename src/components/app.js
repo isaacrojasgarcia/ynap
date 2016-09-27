@@ -8,7 +8,7 @@ export default class App extends React.Component {
     render() {
         return (
             <div>
-                <h1>-</h1>
+                <h1 class="text-info text-center">YNAP Test</h1>
                 <Panel>
                     <CreateItem/>
                 </Panel>
