@@ -62,4 +62,13 @@ export function sortBy(sortBy) {
         type: 'SORT_ITEMS',
         payload: sortBy
     };
+};
+
+export function removeItem(id) {
+    // This should call to the DELETE method of /products specifying the id
+    // Then dispatch the REMOVE_ITEM
+    return {
+        type: 'REMOVE_ITEM',
+        payload: id
+    };
 }

@@ -1,36 +1,25 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Button } from 'react-bootstrap';
+import { removeItem } from '../actions';
 
+@connect()
 export default class ListItem extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isEditing: false
-        };
-    }
-
-    renderItem() {
-        const { id, title, price } = this.props;
-        if (this.state.isEditing) {
-            return (
-                <td>
-                    <form onSubmit={ this.onSaveClick.bind(this) }>
-                        <input type="text" defaultValue={title} ref="editInput" />
-                    </form>
-                </td>
-            );
-        }
-
-        return (
-            <td> { title } </td>
-        );
+    handleRemove() {
+        this.props.dispatch(removeItem(this.props.id));
     }
 
     render() {
         return (
             <tr>
                 <td> { this.props.id } </td>
-                { this.renderItem() }
+                <td> { this.props.title } </td>
                 <td> { this.props.price } </td>
+                <td>
+                    <Button class="btn btn-link" onClick={ this.handleRemove.bind(this, this.props.id) }>
+                        Remove
+                    </Button>
+                </td>
             </tr>
         );
     }

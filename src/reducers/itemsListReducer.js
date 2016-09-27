@@ -23,6 +23,13 @@ export default (state = initialState, action) => {
                 items: state.items.concat(action.payload)
             });
 
+        case 'REMOVE_ITEM':
+            return Object.assign({}, state, {
+                items: _.remove(state.items, (it) => {
+                    return it.id !== action.payload;
+                })
+            });
+
         case 'SORT_ITEMS': {
             return Object.assign({}, state, {
                 items: _.sortBy(state.items, [action.payload]),

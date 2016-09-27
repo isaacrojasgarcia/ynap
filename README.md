@@ -48,5 +48,7 @@ The app should be able to:
 
 There is a big list of TODOs but in my opinion the next steps should be:
 
-- [ ] Add actions to the items list (edit, remove)
+- [ ] Add actions to the items list
+    - [x] remove item
+    - [ ] edit item
 - [ ] Add unit testing
