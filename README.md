@@ -50,5 +50,6 @@ There is a big list of TODOs but in my opinion the next steps should be:
 
 - [ ] Add actions to the items list
     - [x] remove item
+    - [ ] add Undo action for removing
     - [ ] edit item
 - [ ] Add unit testing
