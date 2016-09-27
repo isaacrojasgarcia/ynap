@@ -4,7 +4,7 @@ var path = require('path');
 module.exports = {
     devtool: 'inline-source-map',
     entry: [
-        'webpack-dev-server/client?http://127.0.0.1:8080/',
+        'webpack-dev-server/client?http://127.0.0.1:8000/',
         'webpack/hot/only-dev-server',
         './src'
     ],
@@ -21,7 +21,6 @@ module.exports = {
         {
             test: /\.jsx?$/,
             exclude: /node_modules/,
-            // loaders: ['react-hot', 'babel?presets[]=react,presets[]=es2015']
             loader: 'babel-loader',
             query: {
                 presets: ['react', 'es2015', 'stage-0'],
