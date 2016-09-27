@@ -48,6 +48,13 @@ The app should be able to:
 * The `addItem` for has validators for the title (when is empty) and the price (when is empty and not a number)
 * Clicking the headers of the table will sort the table in ascending mode  
 
+
+## Screenshots
+![Form Validation](./docs/form_validation.png)
+
+![Sorting](./docs/sorting.png)
+
+
 ## TODO
 
 There is a big list of TODOs but in my opinion the next steps should be:
