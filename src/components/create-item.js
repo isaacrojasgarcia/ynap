@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import { Button, Form, FormGroup, FormControl, Col, ControlLabel, Alert } from 'react-bootstrap';
+import { Button, Form, FormGroup, FormControl, Col, ControlLabel, Alert, Glyphicon } from 'react-bootstrap';
 import { addItem, itemTitleNotValid, itemPriceNotValid } from '../actions';
 
 @connect((store) => {
@@ -37,7 +37,7 @@ export default class CreateItemComponent extends React.Component {
             <FormGroup>
                 <Col smOffset={2} sm={10}>
                     <Alert bsStyle="danger">
-                        { this.props.status.errMsg }
+                        <Glyphicon glyph="remove-circle" /> { this.props.status.errMsg }
                     </Alert>
                 </Col>
             </FormGroup>
@@ -61,7 +61,9 @@ export default class CreateItemComponent extends React.Component {
                 </FormGroup>
                 <FormGroup>
                     <Col smOffset={2} sm={10}>
-                        <Button className="well" type="submit">Create</Button>
+                        <Button class="btn btn-primary" type="submit">
+                            <Glyphicon glyph="plus" />  Create
+                        </Button>
                     </Col>
                 </FormGroup>
                 { this.renderError() }
