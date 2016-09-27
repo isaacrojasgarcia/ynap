@@ -1,5 +1,9 @@
+import _ from 'lodash';
+
 const initialState = {
-    items: []
+    items: [],
+    sorted: false,
+    sortedBy: ''
 };
 
 export default (state = initialState, action) => {
@@ -18,6 +22,14 @@ export default (state = initialState, action) => {
             return Object.assign({}, state, {
                 items: state.items.concat(action.payload)
             });
+
+        case 'SORT_ITEMS': {
+            return Object.assign({}, state, {
+                items: _.sortBy(state.items, [action.payload]),
+                sorted: true,
+                sortedBy: action.payload
+            });
+        }
     }
     return state;
 };

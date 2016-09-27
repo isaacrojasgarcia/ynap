@@ -43,13 +43,6 @@ export function getAllItems() {
     }
 };
 
-// export function itemAdded() {
-//     return {
-//         type: 'ITEM_ADDED',
-//         payload: true
-//     };
-// };
-
 export function itemTitleNotValid() {
     return {
         type: 'ITEM_TITLE_NOT_VALID',
@@ -63,3 +56,10 @@ export function itemPriceNotValid() {
         payload: true
     };
 };
+
+export function sortBy(sortBy) {
+    return {
+        type: 'SORT_ITEMS',
+        payload: sortBy
+    };
+}
